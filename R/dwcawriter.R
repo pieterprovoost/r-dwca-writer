@@ -35,8 +35,11 @@ generate_table <- function(table, core = TRUE) {
     linesTerminatedBy = "\\n",
     fieldsEnclosedBy = "",
     ignoreHeaderLines = "1",
-    rowType = table$type
+    rowType = xml_attr(table_type, "rowType")
   )
+
+  f <- read_xml(glue("<files><location>{table$name}.txt</location></files>"))
+  xml_add_child(root, f)
 
   field <- read_xml(glue("<{element_id} />"))
   xml_attrs(field) <- c(
@@ -69,7 +72,6 @@ write_dwca <- function(archive, file) {
 
   # process core
 
-  stopifnot(is.list(archive$core))
   node <- generate_table(archive$core, TRUE)
   xml_add_child(root, node)
   write.table(archive$core$data, file.path(tmp, paste0(archive$core$name, ".txt")), sep = "\t", row.names = FALSE, na = "", quote = FALSE)
