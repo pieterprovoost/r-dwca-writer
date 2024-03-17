@@ -89,6 +89,11 @@ write_dwca <- function(archive, file) {
   write_xml(root, file.path(tmp, "meta.xml"))
   files <- c(files, file.path(tmp, "meta.xml"))
 
+  # write eml
+
+  writeLines(archive$eml, file.path(tmp, "eml.xml"))
+  files <- c(files, file.path(tmp, "eml.xml"))
+
   # create zip
 
   zip(zipfile = file, files = files, extras = "-j")
