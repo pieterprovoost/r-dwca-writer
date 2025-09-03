@@ -52,7 +52,7 @@ generate_table <- function(table, core = TRUE) {
     if (!is.na(qualname)) {
       field <- read_xml(glue("<field />"))
       xml_attrs(field) <- c(
-        index = as.character(i),
+        index = as.character(i - 1),
         term = qualname
       )
       xml_add_child(root, field)

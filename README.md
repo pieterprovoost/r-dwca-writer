@@ -34,14 +34,14 @@ archive <- list(
   core = list(
     name = "occurrence",
     type = "https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml",
-    index = 1,
+    index = 0,
     data = occurrence
   ),
   extensions = list(
     list(
       name = "measurementorfact",
       type = "https://rs.gbif.org/extension/dwc/measurements_or_facts_2022-02-02.xml",
-      index = 1,
+      index = 0,
       data = mof
     )
   )
